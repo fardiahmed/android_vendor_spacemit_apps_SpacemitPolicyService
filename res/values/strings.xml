@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_label">SpacemiT Policy</string>
+    <string name="perm_manage_label">Manage SpacemiT device policy</string>
+    <string name="perm_manage_desc">Allows applying SpacemiT device and vendor policies.</string>
+</resources>

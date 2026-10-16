@@ -1,0 +1,17 @@
+// SpacemiT device-policy service host: a platform-signed, privileged app that
+// publishes the bound ISpacemitPolicyManager and applies policies via
+// SystemProperties and framework Settings. platform_apis for SystemProperties.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_app {
+    name: "SpacemitPolicyService",
+    srcs: ["src/**/*.java"],
+    resource_dirs: ["res"],
+    static_libs: ["spacemit-policy-sdk"],
+    platform_apis: true,
+    certificate: "platform",
+    privileged: true,
+}

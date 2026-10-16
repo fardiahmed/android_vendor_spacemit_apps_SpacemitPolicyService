@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SpacemiT device-policy service: a privileged, platform-signed app that hosts
+     the bound ISpacemitPolicyManager and enforces policies. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.spacemit.policy.service">
+
+    <!-- Guards every mutating policy call; granted to platform/privileged callers. -->
+    <permission android:name="com.spacemit.policy.permission.MANAGE_DEVICE_POLICY"
+        android:protectionLevel="signature|privileged"
+        android:label="@string/perm_manage_label"
+        android:description="@string/perm_manage_desc" />
+
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:label="@string/app_label"
+        android:allowBackup="false"
+        android:defaultToDeviceProtectedStorage="true">
+
+        <service
+            android:name=".SpacemitPolicyService"
+            android:exported="true"
+            android:permission="com.spacemit.policy.permission.MANAGE_DEVICE_POLICY">
+            <intent-filter>
+                <action android:name="com.spacemit.policy.action.BIND" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".BootReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
